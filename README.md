@@ -8,7 +8,7 @@ Maven Git plugin to perform basic Git functions from within Maven.
 1. Add Plug-in repository.
 
 >       <dependency>
->             <groupId>com.koekiebox.git-maven-plugin</groupId>
+>             <groupId>com.thumbzup.git-maven-plugin</groupId>
 >             <artifactId>git-maven-plugin</artifactId>
 >             <scope>compile</scope>
 >           </dependency>
@@ -17,7 +17,7 @@ Maven Git plugin to perform basic Git functions from within Maven.
 
 > <!--Git Describe-->
 >       <plugin>
->         <groupId>com.koekiebox.git-maven-plugin</groupId>
+>         <groupId>com.thumbzup.git-maven-plugin</groupId>
 >         <artifactId>git-maven-plugin</artifactId>
 >         <executions>
 >           <execution>
