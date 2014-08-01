@@ -5,17 +5,20 @@ Maven Git plugin to perform basic Git functions from within Maven.
 
 *** Usage ***
 
-1. Add Plug-in repository.
+1. Add Plug-in dependancy.
 
->       <dependency>
->             <groupId>com.thumbzup.git-maven-plugin</groupId>
->             <artifactId>git-maven-plugin</artifactId>
->             <scope>compile</scope>
->           </dependency>
+```
+		<dependency>
+			<groupId>com.thumbzup</groupId>
+			<artifactId>git-maven-plugin</artifactId>
+			<version>1.0</version>
+			<type>maven-plugin</type>
+		</dependency>
+```		
 
 2. Declare plugin in pom.xml and configure. Make sure its the first plugin.
 
-> <!--Git Describe-->
+> <!--Git Describe--> (add under <build>)
 >       <plugin>
 >         <groupId>com.thumbzup.git-maven-plugin</groupId>
 >         <artifactId>git-maven-plugin</artifactId>
@@ -32,7 +35,7 @@ Maven Git plugin to perform basic Git functions from within Maven.
 >         </configuration>
 >      </plugin>
 
-3. Make use of the 'maven-jar-plugin' to extract the property and place in MANIFEST.MF.
+3. Make use of the 'maven-jar-plugin' or the 'maven-war-plugin' to extract the property and place in MANIFEST.MF.
 
 > <!--Include in the MANIFEST.MF with the Git-Describe-->
 >       <plugin>
@@ -57,17 +60,18 @@ Maven Git plugin to perform basic Git functions from within Maven.
 
 4. Make use of the following code to extract the "git.describe" value from the MANIFEST.MF.
 
-> Class clazz = MyClass.class;
-> String className = clazz.getSimpleName() + ".class";
-> String classPath = clazz.getResource(className).toString();
-> if (!classPath.startsWith("jar")) {
->   // Class not from JAR
->   return;
-> }
-> String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1) +
->     "/META-INF/MANIFEST.MF";
-> Manifest manifest = new Manifest(new URL(manifestPath).openStream());
-> Attributes attr = manifest.getMainAttributes();
-> String value = attr.getValue("git.describe");
-
+```
+ Class clazz = MyClass.class;
+ String className = clazz.getSimpleName() + ".class";
+ String classPath = clazz.getResource(className).toString();
+ if (!classPath.startsWith("jar")) {
+   // Class not from JAR
+   return;
+ }
+ String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1) +
+     "/META-INF/MANIFEST.MF";
+ Manifest manifest = new Manifest(new URL(manifestPath).openStream());
+ Attributes attr = manifest.getMainAttributes();
+ String value = attr.getValue("git.describe");
+```
 
