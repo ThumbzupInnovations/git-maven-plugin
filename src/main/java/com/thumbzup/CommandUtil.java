@@ -79,7 +79,7 @@ public class CommandUtil {
 
             String readLine = null;
             while ((readLine = reader.readLine()) != null) {
-                logParam.info("LINE[" + readLine + "]");
+                logParam.debug("LINE[" + readLine + "]");
                 returnedLines.add(readLine);
             }
 
@@ -88,7 +88,7 @@ public class CommandUtil {
                 BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
                 while ((readLine = errorReader.readLine()) != null) {
-                    logParam.error("ERROR_LINE[" + readLine + "]");
+                    logParam.debug("ERROR_LINE[" + readLine + "]");
                     returnedLines.add(readLine);
                 }
             }

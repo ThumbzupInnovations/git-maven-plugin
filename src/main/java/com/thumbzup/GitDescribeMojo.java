@@ -87,7 +87,7 @@ public class GitDescribeMojo extends AbstractMojo {
             if (actualPathFile.exists()) {
                 try {
                     String propertyVal = this.getGitDescribeValue();
-                    this.getLog().info("Starting to edit Java File...");
+                    this.getLog().debug("Starting to edit Java File...");
                     this.editJavaFile(actualPathFile, propertyVal);
                 }
                 //
@@ -109,7 +109,7 @@ public class GitDescribeMojo extends AbstractMojo {
 
             properties.setProperty(this.systemPropertyNameForGitDescribe, propertyVal);
 
-            this.getLog().info("[" + this.systemPropertyNameForGitDescribe + "]: " + propertyVal);
+            this.getLog().debug("[" + this.systemPropertyNameForGitDescribe + "]: " + propertyVal);
         }
     }
 
@@ -122,7 +122,7 @@ public class GitDescribeMojo extends AbstractMojo {
         String finalSource = null;
         String fullPath = null;
         try {
-            this.getLog().info("Existing Value: \n\n" + gitDescribeValueParam);
+            this.getLog().debug("Existing Value: \n\n" + gitDescribeValueParam);
 
             finalSource = FileUtils.readFileToString(toReadParam);
 
@@ -149,7 +149,7 @@ public class GitDescribeMojo extends AbstractMojo {
             stringBuilder.append(gitDescribeValueParam);
             stringBuilder.append(postfixPartTwo);
 
-            this.getLog().info("\n\n\n\n----------\n" + stringBuilder.toString() + "\n---------\n\n\n\n\n\n");
+            this.getLog().debug("\n\n\n\n----------\n" + stringBuilder.toString() + "\n---------\n\n\n\n\n\n");
 
             toReadParam.delete();
 
@@ -211,7 +211,7 @@ public class GitDescribeMojo extends AbstractMojo {
         modifiedSource = modifiedSource.replace(Token.PACKAGE, packageOnly);
         modifiedSource = modifiedSource.replace(Token.GIT_DESCRIBE_CONSTANT_NAME, this.constantToChange);
 
-        this.getLog().info(modifiedSource);
+        this.getLog().debug(modifiedSource);
 
         FileUtils.writeStringToFile(toCreateParam, modifiedSource);
     }
@@ -238,7 +238,7 @@ public class GitDescribeMojo extends AbstractMojo {
             return ("Not expected response code [" + commandResult.getExitCode() + "]. 'git describe' failed. Tag your repository!!! " + specificError);
         }
 
-        this.getLog().info("Execute Result: " + commandResult.getExitCode() + commandResult.getResultLines()[0]);
+        this.getLog().debug("Execute Result: " + commandResult.getExitCode() + commandResult.getResultLines()[0]);
 
         String returnVal = "";
         for (String line : resultLines) {
