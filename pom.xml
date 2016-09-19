@@ -94,5 +94,28 @@
                 </executions>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.kuali.maven.wagons</groupId>
+                <artifactId>maven-s3-wagon</artifactId>
+                <version>1.2.1</version>
+            </extension>
+        </extensions>
     </build>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>repo.thumbzup.com</id>
+            <url>s3://repo.thumbzup.com/snapshot</url>
+        </snapshotRepository>
+        <repository>
+            <id>repo.thumbzup.com</id>
+            <url>s3://repo.thumbzup.com/release</url>
+        </repository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <id>repo.thumbzup.com</id>
+            <url>s3://repo.thumbzup.com/release</url>
+        </repository>
+    </repositories>
 </project>
